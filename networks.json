@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "StakeChain": {
+      "address": "0xE84093Ca8284d58D32D75D1Ce006f746AE2453Ae",
+      "startBlock": 6601642
+    }
+  }
+}

@@ -1,0 +1,49 @@
+type BetEventCreated @entity(immutable: true) {
+  id: Bytes!
+  betEventId: BigInt! # uint256
+  title: String! # string
+  description: String! # string
+  options: [String!]! # string[]
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BetPlaced @entity(immutable: true) {
+  id: Bytes!
+  betEventId: BigInt! # uint256
+  player: Bytes! # address
+  amount: BigInt! # uint256
+  outcome: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BetSettled @entity(immutable: true) {
+  id: Bytes!
+  betEventId: BigInt! # uint256
+  outcome: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SCHAINDistributed @entity(immutable: true) {
+  id: Bytes!
+  player: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ShareClaimed @entity(immutable: true) {
+  id: Bytes!
+  betEventId: BigInt! # uint256
+  player: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

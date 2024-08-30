@@ -1,0 +1,38 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: StakeChain
+    network: sepolia
+    source:
+      address: "0xE84093Ca8284d58D32D75D1Ce006f746AE2453Ae"
+      abi: StakeChain
+      startBlock: 6601642
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BetEventCreated
+        - BetPlaced
+        - BetSettled
+        - SCHAINDistributed
+        - ShareClaimed
+      abis:
+        - name: StakeChain
+          file: ./abis/StakeChain.json
+      eventHandlers:
+        - event: BetEventCreated(indexed uint256,string,string,string[])
+          handler: handleBetEventCreated
+        - event: BetPlaced(indexed uint256,indexed address,uint256,uint256)
+          handler: handleBetPlaced
+        - event: BetSettled(indexed uint256,uint256)
+          handler: handleBetSettled
+        - event: SCHAINDistributed(indexed address,uint256)
+          handler: handleSCHAINDistributed
+        - event: ShareClaimed(indexed uint256,indexed address,uint256)
+          handler: handleShareClaimed
+      file: ./src/stake-chain.ts
